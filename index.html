@@ -4,631 +4,1530 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Eurasia Group of Companies - Global Business Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    <title>Eurasia Group of Companies | Global Corporate Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet" />
-    <link rel="stylesheet" href="eurasia.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <style>
+        :root {
+            --primary: #D10000;
+            --primary-glow: rgba(209, 0, 0, 0.15);
+
+            /* Dark Theme Variables default */
+            --bg: #0A0F18;
+            --card-bg: #121824;
+            --text-main: #FFFFFF;
+            --text-muted: #8A99AD;
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(18, 24, 36, 0.75);
+            --header-bg: rgba(10, 15, 24, 0.8);
+            --ticker-bg: #101622;
+        }
+
+        /* Light Theme Variable Overrides */
+        [data-theme="light"] {
+            --bg: #F4F7FA;
+            --card-bg: #FFFFFF;
+            --text-main: #0A0F18;
+            --text-muted: #64748B;
+            --border: rgba(0, 0, 0, 0.08);
+            --glass: rgba(255, 255, 255, 0.8);
+            --header-bg: rgba(244, 247, 250, 0.85);
+            --ticker-bg: #E2E8F0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #222C3F;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--header-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-right-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            opacity: 0.85;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            opacity: 1;
+        }
+
+        /* Mode Toggle Engine Button */
+        .theme-toggle-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #FFFFFF;
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid transparent;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px var(--primary-glow);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(209, 0, 0, 0.35);
+            background: #E60000;
+            color: #FFFFFF;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--text-main);
+            box-shadow: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        #canvas-container {
+            position: absolute;
+            top: 0;
+            right: -10%;
+            width: 60%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+            color: var(--text-main);
+        }
+
+        .hero-content h1 span {
+            color: var(--primary);
+            display: block;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 36px;
+            max-width: 540px;
+        }
+
+        .flag-tags {
+            display: flex;
+            gap: 12px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-main);
+        }
+
+        /* Social Channel Integration Bar */
+        .social-ticker {
+            background: var(--ticker-bg);
+            border-y: 1px solid var(--border);
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            border-top: 1px solid var(--border);
+        }
+
+        .ticker-wrapper {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: transform 0.3s ease;
+        }
+
+        .ticker-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .ticker-item i {
+            font-size: 1.5rem;
+        }
+
+        .ticker-text h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .ticker-text p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Grid Setup & Generic Sections */
+        section {
+            padding: 120px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 80px auto;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* REDESIGNED: Services Compact 3D Grid Layout */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .service-card:hover {
+            border-color: rgba(209, 0, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .service-img-wrapper {
+            position: relative;
+            height: 200px;
+            /* Reduced vertical footprint slightly */
+            overflow: hidden;
+        }
+
+        .service-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .service-card:hover .service-img-wrapper img {
+            transform: scale(1.08);
+        }
+
+        /* FIXED: Red action badges placed safely to avoid cut-offs */
+        .service-overlay-icon {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #FFFFFF;
+            box-shadow: 0 6px 15px rgba(209, 0, 0, 0.4);
+            z-index: 5;
+        }
+
+        /* ADJUSTED: Less padding and height to bring content closer together */
+        .service-body {
+            padding: 24px 24px 20px 24px;
+        }
+
+        .service-body h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .service-body p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            height: 44px;
+            /* Scaled down to prevent clipping text */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        /* Features Setup */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 40px 30px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-icon-box {
+            width: 50px;
+            height: 50px;
+            background: rgba(209, 0, 0, 0.1);
+            color: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 24px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Global Footprint Hubs */
+        .global-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 30px;
+        }
+
+        .presence-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .presence-img {
+            height: 280px;
+            position: relative;
+        }
+
+        .presence-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .presence-meta {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(10, 15, 24, 0.95), transparent);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            z-index: 2;
+        }
+
+        .presence-meta h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .presence-meta p {
+            color: #8A99AD;
+            font-size: 0.85rem;
+        }
+
+        .flag-badge {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Management Hierarchy */
+        .leader-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .leader-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .leader-card:hover {
+            border-color: var(--primary);
+            background: rgba(209, 0, 0, 0.02);
+        }
+
+        .leader-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+
+        .leader-card p {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Context Processing Overlay System */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(6, 9, 14, 0.85);
+            backdrop-filter: blur(16px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            width: 90%;
+            max-width: 650px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            padding: 30px 40px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .close-modal {
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .close-modal:hover {
+            opacity: 1;
+        }
+
+        .modal-body {
+            padding: 40px;
+            max-height: 70vh;
+            overflow-y: auto;
+            color: var(--text-muted);
+        }
+
+        /* Floating Communications Panel */
+        .whatsapp-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+
+        .chat-trigger {
+            width: 64px;
+            height: 64px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #FFFFFF;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .chat-trigger:hover {
+            transform: scale(1.08) rotate(8deg);
+        }
+
+        .chat-panel {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 320px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .chat-panel.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .panel-header {
+            background: rgba(37, 211, 102, 0.15);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .panel-header .avatar {
+            width: 40px;
+            height: 40px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .panel-header h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .panel-header p {
+            font-size: 0.75rem;
+            color: #25D366;
+            font-weight: 500;
+        }
+
+        .panel-body {
+            padding: 20px;
+        }
+
+        .msg-bubble {
+            background: rgba(138, 153, 173, 0.1);
+            padding: 12px 16px;
+            border-radius: 12px;
+            border-top-left-radius: 2px;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            margin-bottom: 20px;
+        }
+
+        /* Footer Infrastructure */
+        footer {
+            background: #06090E;
+            border-top: 1px solid var(--border);
+            padding: 100px 0 40px 0;
+            color: #FFFFFF;
+        }
+
+        footer * {
+            color: #FFFFFF !important;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1.5fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo-side h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .footer-logo-side h3 span {
+            color: var(--primary);
+        }
+
+        .footer-logo-side p {
+            color: #8A99AD !important;
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+            max-width: 300px;
+        }
+
+        .footer-links-side h4,
+        .footer-office-side h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .footer-links-side ul {
+            list-style: none;
+        }
+
+        .footer-links-side ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links-side ul li a {
+            color: #8A99AD !important;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links-side ul li a:hover {
+            color: #FFFFFF !important;
+        }
+
+        .office-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+        }
+
+        .office-location-card h5 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .office-location-card p {
+            font-size: 0.8rem;
+            color: #8A99AD !important;
+            line-height: 1.4;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-bottom p {
+            font-size: 0.85rem;
+            color: #8A99AD !important;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-icons a {
+            width: 38px;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Adjustments */
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-main);
+        }
+
+        @media (max-width: 992px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            #canvas-container {
+                width: 100%;
+                right: 0;
+                opacity: 0.3;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-content p {
+                margin: 0 auto 36px auto;
+            }
+
+            .flag-tags {
+                justify-content: center;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--bg);
+                flex-direction: column;
+                padding: 40px 0;
+                gap: 24px;
+                transition: left 0.4s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Header -->
+
     <header>
         <div class="container">
             <nav>
                 <a href="#" class="logo">EURASIA <span>GROUP</span></a>
-                <div class="mobile-menu-toggle">☰</div>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#global">Global Presence</a></li>
-                    <li><a href="#contact" class="btn btn-outline">Contact Us</a></li>
-                </ul>
+                <div class="nav-right-wrapper">
+                    <button class="theme-toggle-btn" id="theme-toggle-node" title="Switch Theme Matrix">
+                        <i class="fa-solid fa-sun"></i>
+                    </button>
+                    <div class="mobile-toggle" id="menu-btn"><i class="fa-solid fa-bars"></i></div>
+                    <ul class="nav-links" id="nav-menu">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#global">Global Footprint</a></li>
+                        <li><a href="#leadership">Leadership</a></li>
+                        <li><a href="#contact" class="btn btn-outline">Contact Corporate</a></li>
+                    </ul>
+                </div>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
+        <div id="canvas-container"></div>
         <div class="container">
-            <h3>WELCOME TO EURASIA GROUP OF COMPANIES <br /> UAE 🇦🇪 USA 🇺🇸 CHINA 🇨🇳 & PAKISTAN 🇵🇰
-                SINCE 1995
-            </h3>
-            <p>Providing comprehensive business solutions and manpower services across multiple industries worldwide.
-            </p>
-            <a href="#contact" class="btn">Get In Touch</a>
+            <div class="hero-content">
+                <h1><span>Eurasia Group of Companies</span>Architecting Global Enterprise</h1>
+                <p>Delivering high-tier corporate restructuring, multinational manpower architectures, technical
+                    execution, and transnational trade infrastructure since 1995.</p>
+                <a href="#services" class="btn">Examine Solutions <i class="fa-solid fa-arrow-right"></i></a>
+                <div class="flag-tags">
+                    <span class="tag">🇦🇪 UAE</span>
+                    <span class="tag">🇺🇸 USA</span>
+                    <span class="tag">🇨🇳 CHINA</span>
+                    <span class="tag">🇵🇰 PAKISTAN</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="categories">
+    <div class="social-ticker">
         <div class="container">
-            <div class="section-title">
-                <h2>OUR SERVICES & BUSINESS</h2>
-                <p>Comprehensive solutions to meet all your business needs</p>
+            <div class="ticker-wrapper">
+                <a href="https://tiktok.com/@eurasiagroup1?_r=1&_t=ZS-96dWfqWddvY" target="_blank" class="ticker-item">
+                    <i class="fa-brands fa-tiktok" style="color: #00f2fe;"></i>
+                    <div class="ticker-text">
+                        <h4>Verified TikTok Hub</h4>
+                        <p>Join our content community</p>
+                    </div>
+                </a>
+                <a href="https://whatsapp.com/channel/0029VbBzZglElagnDpgSzl0z" target="_blank" class="ticker-item">
+                    <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i>
+                    <div class="ticker-text">
+                        <h4>Official Broadcast Channel</h4>
+                        <p>Real-time corporate notifications</p>
+                    </div>
+                </a>
+                <a href="https://chat.whatsapp.com/LOvU6709IQe1xt5gZ3uX96?s=sh&p=a&ilr=0" target="_blank"
+                    class="ticker-item">
+                    <i class="fa-solid fa-users" style="color: #38bdf8;"></i>
+                    <div class="ticker-text">
+                        <h4>Corporate Sync Group</h4>
+                        <p>Direct communication pipeline</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Operational Directives</h2>
+                <p>Enterprise intelligence executing across specialized market matrices globally.</p>
             </div>
 
-            <!-- About Us Section -->
-            <section id="about" class="testimonials" style="background-color: #f9f9f9;">
-                <div class="container">
-                    <div class="expandable-grid">
-                        <!-- Manpower Solutions -->
-                        <div class="expandable-card">
-                            <div class="card-header">
-                                <div class="feature-icon">👥</div>
-                                <h3>MANPOWER SOLUTIONS</h3>
-                                <span class="expand-icon">+</span>
-                            </div>
-                            <div class="card-content">
-                                <p>We provide tailored solutions to manage recruitment, onboarding, deployment, as well
-                                    as accommodation and transportation throughout the employee life cycle. From initial
-                                    engagement through to deployment, Eurasia Manpower team works on identifying the
-                                    milestones and schedules to ensure your workforce is deployed in line with your
-                                    requirements. Eurasia manages all processes - recruitment, deployment, human
-                                    resources and payroll - throughout the duration of the project, with support
-                                    provided by a dedicated contract management team. Our extensive experience in
-                                    recruiting and sourcing talent for various industries and our vast experience across
-                                    the UAE makes us a partner of choice.</p>
-                            </div>
-                        </div>
+            <div class="services-grid">
+                <div class="service-card" data-service="manpower">
+                    <div class="service-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80"
+                            alt="Manpower Engineering Solutions">
+                        <div class="service-overlay-icon"><i class="fa-solid fa-users-gear"></i></div>
+                    </div>
+                    <div class="service-body">
+                        <h3>Manpower Architecture</h3>
+                        <p>Complete lifecycle management across human capital deployments, deployment compliance
+                            architectures, lifecycle processing, and payroll systems.</p>
+                        <a href="#" class="open-modal-btn"
+                            style="color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.9rem;">Analyze
+                            Capabilities &rarr;</a>
+                    </div>
+                </div>
 
+                <div class="service-card" data-service="staffing">
+                    <div class="service-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=600&q=80"
+                            alt="Staffing Solutions">
+                        <div class="service-overlay-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                    </div>
+                    <div class="service-body">
+                        <h3>Staffing Systems</h3>
+                        <p>Exclusive contingency executive acquisitions, strategic RPO solutions, and international
+                            verified pipeline deployments across fast-moving verticals.</p>
+                        <a href="#" class="open-modal-btn"
+                            style="color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.9rem;">Analyze
+                            Capabilities &rarr;</a>
+                    </div>
+                </div>
 
+                <div class="service-card" data-service="setup">
+                    <div class="service-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80"
+                            alt="Business Setup">
+                        <div class="service-overlay-icon"><i class="fa-solid fa-building-shield"></i></div>
+                    </div>
+                    <div class="service-body">
+                        <h3>Enterprise Corporate Setup</h3>
+                        <p>Turnkey company initialization assets within elite international commerce zones. Regulatory
+                            frameworks processing, operational office assets provisioning.</p>
+                        <a href="#" class="open-modal-btn"
+                            style="color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.9rem;">Analyze
+                            Capabilities &rarr;</a>
+                    </div>
+                </div>
 
-                        <!-- Staffing Solutions -->
-                        <div class="expandable-card">
-                            <div class="card-header">
-                                <div class="feature-icon">🔍</div>
-                                <h3>STAFFING SOLUTIONS</h3>
-                                <span class="expand-icon">+</span>
-                            </div>
-                            <div class="card-content">
-                                <p>Build your perfect team with our exclusive recruitment solutions at Eurasia Manpower
-                                    HR Consultancies. Our clients can avail of all-inclusive contingency recruitment
-                                    services, direct sourcing, permanent hiring, executive search, strategic RPO
-                                    solutions, and more based on their specific needs.</p>
-                                <p><strong>Advantages of our recruitment services:</strong></p>
-                                <ul>
-                                    <li>End-to-end recruitment solutions</li>
-                                    <li>Extended Market Knowledge</li>
-                                    <li>Access to better candidates</li>
-                                    <li>Longterm partnerships</li>
-                                    <li>Minimize attrition</li>
-                                    <li>Faster hiring and flexible costing</li>
-                                </ul>
-                            </div>
-                        </div>
+                <div class="service-card" data-service="technical">
+                    <div class="service-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80"
+                            alt="Technical Services">
+                        <div class="service-overlay-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                    </div>
+                    <div class="service-body">
+                        <h3>Technical Engineering</h3>
+                        <p>Advanced structural assets management. Comprehensive mechanical frameworks, automated control
+                            networks calibration, large scale asset restorations.</p>
+                        <a href="#" class="open-modal-btn"
+                            style="color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.9rem;">Analyze
+                            Capabilities &rarr;</a>
+                    </div>
+                </div>
 
+                <div class="service-card" data-service="travel">
+                    <div class="service-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80"
+                            alt="Travel Services">
+                        <div class="service-overlay-icon"><i class="fa-solid fa-plane-departure"></i></div>
+                    </div>
+                    <div class="service-body">
+                        <h3>Global Logistics & Travel</h3>
+                        <p>Established elite logistics matrix since 1995. High volume transit provisioning, corporate
+                            travel accounts consolidation, optimized global packages.</p>
+                        <a href="#" class="open-modal-btn"
+                            style="color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.9rem;">Analyze
+                            Capabilities &rarr;</a>
+                    </div>
+                </div>
 
+                <div class="service-card" data-service="trading">
+                    <div class="service-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=600&q=80"
+                            alt="Trading Services">
+                        <div class="service-overlay-icon"><i class="fa-solid fa-ship"></i></div>
+                    </div>
+                    <div class="service-body">
+                        <h3>Transnational Import/Export</h3>
+                        <p>High-capacity freight movement channels bridging China pipelines to main Western global
+                            corridors. Complex consumer electronics & heavy industrial systems transit.</p>
+                        <a href="#" class="open-modal-btn"
+                            style="color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.9rem;">Analyze
+                            Capabilities &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                        <!-- Business Setup -->
-                        <div class="expandable-card">
-                            <div class="card-header">
-                                <div class="feature-icon">🏢</div>
-                                <h3>BUSINESS SETUP</h3>
-                                <span class="expand-icon">+</span>
-                            </div>
-                            <div class="card-content">
-                                <p>We take care of all the documentation and processes to get your business license
-                                    easily and fast. We have various types of offices and shared workspaces that meet
-                                    any type of business need.</p>
-                                <p><strong>Easy Steps To Company Formation in UAE:</strong> We have experience of many
-                                    years in the formation of new businesses. From completing the legal formalities to
-                                    the infrastructure and promotion, we are the one stop solution for all your business
-                                    requirements.</p>
-                            </div>
-                        </div>
+    <section style="background: rgba(138,153,173,0.05); border-y: 1px solid var(--border);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Strategic Priorities</h2>
+                <p>Systematized mechanics optimizing modern international corporate growth.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fa-solid fa-microchip"></i></div>
+                    <h3>Automated Testing</h3>
+                    <p>Proprietary evaluation platforms checking candidate language command, technical logic profiling,
+                        and domain execution metrics before cross-border transit.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>Execution Safety</h3>
+                    <p>Comprehensive workspace security parameters ensuring zero incident deployments and total
+                        compliance with occupational safety systems protocols.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fa-solid fa-network-wired"></i></div>
+                    <h3>High Synergy</h3>
+                    <p>Integrated ecosystems running multi-department coordination flawlessly, accelerating global
+                        business setup and execution speeds.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3>Velocity Control</h3>
+                    <p>Precision execution lines minimizing onboarding timelines while optimizing acquisition cost
+                        efficiencies for premium cross-continental partners.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                        <!-- Technical Services -->
-                        <div class="expandable-card">
-                            <div class="card-header">
-                                <div class="feature-icon">🔧</div>
-                                <h3>TECHNICAL SERVICES</h3>
-                                <span class="expand-icon">+</span>
+    <section id="global">
+        <div class="container">
+            <div class="section-header">
+                <h2>Global Footprint</h2>
+                <p>Strategic geographic hubs routing operational commands across interconnected sovereign hubs.</p>
+            </div>
+            <div class="global-grid">
+                <div class="presence-card">
+                    <div class="presence-img">
+                        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80"
+                            alt="UAE Office">
+                        <div class="presence-meta">
+                            <div>
+                                <h3>Dubai</h3>
+                                <p>Operational Head Office</p>
                             </div>
-                            <div class="card-content">
-                                <ul>
-                                    <li>Annual Maintenance Contracts</li>
-                                    <li>AC Coil Cleaning</li>
-                                    <li>AC Maintenance & Services</li>
-                                    <li>AC Duct Cleaning</li>
-                                    <li>Electrical & Plumbing Works</li>
-                                    <li>Carpentry & Masonry</li>
-                                    <li>Painting & Pest Control</li>
-                                    <li>Villa Extension</li>
-                                    <li>Bathroom Renovation & Waterproofing</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Travel Services -->
-                        <div class="expandable-card">
-                            <div class="card-header">
-                                <div class="feature-icon">✈️</div>
-                                <h3>TRAVEL SERVICES</h3>
-                                <span class="expand-icon">+</span>
-                            </div>
-                            <div class="card-content">
-                                <p>Established in 1995, carrying Airline Tickets, Tours as well as Services related to
-                                    Travel Agency. It ranks among the top travel agencies of Pakistan, awarded many
-                                    times by all leading Airlines due to its huge sale volumes. Our motto is to provide
-                                    best flight options, lowest airfares, cheapest rates of hotels, umrah, hajj, tours,
-                                    insurance & all other services related to travel agency.</p>
-                            </div>
-                        </div>
-
-                        <!-- Security Services -->
-                        <div class="expandable-card">
-                            <div class="card-header">
-                                <div class="feature-icon">🛡️</div>
-                                <h3>SECURITY SERVICES</h3>
-                                <span class="expand-icon">+</span>
-                            </div>
-                            <div class="card-content">
-                                <p><strong>PROVISION OF SECURITY GUARDS:</strong> We offer a wide array of specialized
-                                    security services with customer focused personnel to suit your specific needs
-                                    including:</p>
-                                <ul>
-                                    <li>Special Services Group (SSG)</li>
-                                    <li>Special Security Wing (Ex-Military)</li>
-                                    <li>Ex-Servicemen / Civil Armed Forces</li>
-                                    <li>Fully Trained / Security Cleared Civilian Guards</li>
-                                    <li>Close Protection Officer</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Trading Services -->
-                        <div class="expandable-card">
-                            <div class="card-header">
-                                <div class="feature-icon">🇨🇳</div>
-                                <h3>TRADING SERVICES</h3>
-                                <span class="expand-icon">+</span>
-                            </div>
-                            <div class="card-content">
-                                <p>Our Team is Available to help you & find the Perfect Product. We are Officially Doing
-                                    Import & Export From China to Asian & Gulf countries USA & UK.</p>
-                                <p><strong>OUR SERVICES & PRODUCTS:</strong></p>
-                                <ul>
-                                    <li>Phones & Electronics</li>
-                                    <li>Clothes & Shoes</li>
-                                    <li>Lights & lamps</li>
-                                    <li>Bags & luggage's</li>
-                                    <li>Watch & jewelry</li>
-                                    <li>Bike & Car Autoparts</li>
-                                    <li>Crane & Cnc Laser Cutting Machine etc</li>
-                                </ul>
-                            </div>
+                            <div class="flag-badge">🇦🇪</div>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <!-- Features Section -->
-            <section id="features" class="features">
-                <div class="container">
-                    <div class="section-title">
-                        <h2>Why Choose Eurasia Group?</h2>
-                        <p>We provide comprehensive business solutions with global expertise</p>
-                    </div>
-
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <p>👥</p>
+                <div class="presence-card">
+                    <div class="presence-img">
+                        <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=600&q=80"
+                            alt="USA Office">
+                        <div class="presence-meta">
+                            <div>
+                                <h3>New Jersey</h3>
+                                <p>North American Regional Base</p>
                             </div>
-                            <h3>MANPOWER SOLUTIONS</h3>
-                            <p>We provide tailored solutions to manage recruitment, onboarding, deployment, as well as
-                                accommodation and transportation throughout the employee life cycle. Our extensive
-                                experience in
-                                recruiting and sourcing talent for various industries makes us a partner of choice.</p>
-                        </div>
-
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <p>🚀</p>
-                            </div>
-                            <h3>SERVICES DELIVERY</h3>
-                            <p>We deliver tailored solutions through the entire employee life cycle including
-                                recruitment, visa
-                                and payroll services, transition services, onboarding and mobilisation.</p>
-                        </div>
-
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <p>🔍</p>
-                            </div>
-                            <h3>STAFFING SOLUTIONS</h3>
-                            <p>Build your perfect team with our exclusive recruitment solutions. Our recruitment agency
-                                is led
-                                by top consultants in Dubai, ensuring you receive correct value for your spending with
-                                access to
-                                a global pool of candidates.</p>
-                        </div>
-
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <p>📝</p>
-                            </div>
-                            <h3>SKILL TESTING</h3>
-                            <p>We have specific testing software with numerous tests available. We ask all candidates to
-                                complete Spelling, Grammar, Numeracy & Reasoning tests to ensure quality.</p>
+                            <div class="flag-badge">🇺🇸</div>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <!-- Global Presence Section -->
-            <section id="global" class="partners">
-                <div class="container">
-                    <div class="section-title">
-                        <h2>Our Global Presence</h2>
-                        <p>Serving clients across multiple countries with local expertise</p>
-                    </div>
-
-                    <div class="global-grid">
-                        <div class="global-card">
-                            <div class="global-image">
-                                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                                    alt="Burj Khalifa, Dubai">
-                                <div class="country-flag">🇦🇪</div>
+                <div class="presence-card">
+                    <div class="presence-img">
+                        <img src="https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?auto=format&fit=crop&w=600&q=80"
+                            alt="China Office">
+                        <div class="presence-meta">
+                            <div>
+                                <h3>Hainan Haikou</h3>
+                                <p>Supply Chain Logistics Core</p>
                             </div>
-                            <div class="global-content">
-                                <h3>UAE</h3>
-                                <p>Head Office</p>
-                                <p class="location">Dubai</p>
-                            </div>
-                        </div>
-
-                        <div class="global-card">
-                            <div class="global-image">
-                                <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                                    alt="Statue of Liberty, New York">
-                                <div class="country-flag">🇺🇸</div>
-                            </div>
-                            <div class="global-content">
-                                <h3>USA</h3>
-                                <p>Branch Office</p>
-                                <p class="location">North Plainfield, New Jersey</p>
-                            </div>
-                        </div>
-
-                        <div class="global-card">
-                            <div class="global-image">
-                                <img src="https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                                    alt="Great Wall of China">
-                                <div class="country-flag">🇨🇳</div>
-                            </div>
-                            <div class="global-content">
-                                <h3>China</h3>
-                                <p>Branch Office</p>
-                                <p class="location">Hainan Haikou</p>
-                            </div>
-                        </div>
-
-                        <div class="global-card">
-                            <div class="global-image">
-                                <img src="9k=.jpeg" alt="Badshahi Mosque, Pakistan">
-                                <div class="country-flag">🇵🇰</div>
-                            </div>
-                            <div class="global-content">
-                                <h3>Pakistan</h3>
-                                <p>Branch Office</p>
-                                <p class="location">Anwar Center, Gujrat</p>
-                            </div>
+                            <div class="flag-badge">🇨🇳</div>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <!-- World Map Section -->
-            <section class="world-map">
-                <div class="container">
-                    <div class="section-title">
-                        <h2>Our Worldwide Network</h2>
-                        <p>Connecting talent with opportunity across the globe</p>
-                    </div>
-
-                    <div class="map-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg"
-                            alt="World Map" class="base-map">
-
-                        <div class="map-marker" style="top: 45%; left: 70%;">
-                            <div class="marker-dot"></div>
-                            <div class="marker-label">UAE</div>
-                        </div>
-
-                        <div class="map-marker" style="top: 35%; left: 20%;">
-                            <div class="marker-dot"></div>
-                            <div class="marker-label">USA</div>
-                        </div>
-
-                        <div class="map-marker" style="top: 40%; left: 80%;">
-                            <div class="marker-dot"></div>
-                            <div class="marker-label">China</div>
-                        </div>
-
-                        <div class="map-marker" style="top: 45%; left: 65%;">
-                            <div class="marker-dot"></div>
-                            <div class="marker-label">Pakistan</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- About Us Section -->
-            <section id="about" class="testimonials" style="background-color: #f9f9f9;">
-                <div class="container">
-                    <div class="section-title">
-                        <h2>About Eurasia Group</h2>
-                        <p>Our vision, mission and values</p>
-                    </div>
-
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <p>👁️</p>
+                <div class="presence-card">
+                    <div class="presence-img">
+                        <img src="https://images.trvl-media.com/place/6360603/9e0c97d9-572d-4631-b132-eae121799f9a.jpg"
+                            alt="Pakistan Office - Badshahi Monument Architecture">
+                        <div class="presence-meta">
+                            <div>
+                                <h3>Gujrat</h3>
+                                <p>Regional South Asian Headquarters</p>
                             </div>
-                            <h3>OUR VISION</h3>
-                            <p>To change the landscape of business support services and the outsourcing environment in
-                                the
-                                region.</p>
-                        </div>
-
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <p>🎯</p>
-                            </div>
-                            <h3>OUR MISSION</h3>
-                            <p>To be our customers' trusted partner delivering total business support solutions, to
-                                enable our
-                                customers to focus on their core business.</p>
-                        </div>
-
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <p>❤️</p>
-                            </div>
-                            <h3>OUR VALUES</h3>
-                            <p>Team: Together we achieve more. Relate: Relationships matter. Unique: Diversity enriches
-                                business. Safe: Well-being inspires productivity. Talent: Empower our people.</p>
+                            <div class="flag-badge">🇵🇰</div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </div>
+    </section>
 
-            <!-- CTA Section -->
-            <section class="cta">
-                <div class="container">
-                    <h2>Ready to Grow Your Business?</h2>
-                    <p>Partner with Eurasia Group for comprehensive business solutions across multiple industries.</p>
-                    <a href="#contact" class="btn">Contact Us Today</a>
+    <section id="leadership" style="background: rgba(138,153,173,0.05); border-top: 1px solid var(--border);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Corporate Leadership</h2>
+                <p>Eurasia Group executive steering committee guiding international multi-industry market maneuvers.</p>
+            </div>
+            <div class="leader-showcase">
+                <div class="leader-card">
+                    <h3>Ch. Ishtiaq Ahmed</h3>
+                    <p>Chairman</p>
                 </div>
-            </section>
-
-            <section class="leadership">
-                <div class="container">
-                    <div class="section-title">
-                        <h2>Leadership</h2>
-                    </div>
-                    <div class="leadership-grid">
-                        <div class="leader-card">
-                            <h3>Chairman</h3>
-                            <p>Ch. Ishtiaq Ahmed</p>
-                        </div>
-                        <div class="leader-card">
-                            <h3>CEO</h3>
-                            <p>Mr. Muhammad Mujtaba Ahmed</p>
-                        </div>
-                        <div class="leader-card">
-                            <h3>CHIEF OPERATION OFFICER & MANAGING DIRECTOR </h3>
-                            <p>Mr. Abdul Rehman</p>
-                        </div>
-                        <div class="leader-card">
-                            <h3>Operational Manager</h3>
-                            <p>Mr. Muhammad Faruk</p>
-                        </div>
-                        <div class="leader-card">
-                            <h3>Human Resources Manager</h3>
-                            <p>Mr. Khurram Shahzad</p>
-                        </div>
-                        <div class="leader-card">
-                            <h3>Operational Manager</h3>
-                            <p>ENGR. SOHAIB CHUGHTAI</p>
-                        </div>
-                    </div>
-
-                    <div class="section-subtitle">
-                        <h3>International Branch Companies – General Managers</h3>
-                    </div>
-                    <div class="leadership-grid">
-                        <div class="leader-card">
-                            <h3>General Manager</h3>
-                            <p>Dr. Murtaza Ahmed</p>
-                        </div>
-                        <div class="leader-card">
-                            <h3>General Manager</h3>
-                            <p>Dr. Hassan Raza</p>
-                        </div>
-                        <div class="leader-card">
-                            <h3>General Manager</h3>
-                            <p>Mr. Syed Iqtada Shah</p>
-                        </div>
-
-                    </div>
-
+                <div class="leader-card">
+                    <h3>Mr. M. Mujtaba Ahmed</h3>
+                    <p>Chief Executive Officer</p>
                 </div>
-            </section>
-
-            <section class="chairman-message">
-                <div class="container">
-                    <div class="section-title">
-                        <h2>Chairman’s Message</h2>
-                    </div>
-                    <div class="message-box">
-                        <p class="quote">“We believe in making a difference by creating value in a sustainable and
-                            socially
-                            responsible manner.”</p>
-                        <p>
-                            Commitment to excellence and client satisfaction form the basis of our philosophy. Our theme
-                            is
-                            quality, integrity, time, efficiency and safety.
-                        </p>
-                        <p>
-                            To achieve these principles, we are committed to fulfill our corporate responsibilities,
-                            including
-                            enhancing our awareness of and conformity with business ethics, and aim to be a reliable and
-                            trustworthy company globally.
-                        </p>
-                        <p>
-                            We believe that only outstanding workmanship, superior quality control, effective safety
-                            methods and
-                            continuous development of our management profile and professional skills can bring about the
-                            desired
-                            results and our goal of customer satisfaction.
-                        </p>
-                    </div>
+                <div class="leader-card">
+                    <h3>Mr. Abdul Rehman</h3>
+                    <p>General Manager</p>
                 </div>
-            </section>
+                <div class="leader-card">
+                    <h3>Mr. Muhammad Faruk</h3>
+                    <p>Operations Director</p>
+                </div>
+                <div class="leader-card">
+                    <h3>Mr. Khurram Shahzad</h3>
+                    <p>Human Capital Lead</p>
+                </div>
+                <div class="leader-card">
+                    <h3>Engr. Sohaib Chugtai</h3>
+                    <p>Engineering Assets Director</p>
+                </div>
+            </div>
+        </div>
+        <br> <br>
+        <div class="container">
+            <div class="section-header">
+                <h3>International Branch Companies - General Managers
+                </h3>
+            </div>
+            <div class="leader-showcase">
+                <div class="leader-card">
+                    <h3>Dr. Murtaza Ahmed
+
+                    </h3>
+                    <p>General Manager
+                    </p>
+                </div>
+                <div class="leader-card">
+                    <h3>Dr. Hassan Raza
+
+                    </h3>
+                    <p>General Manager
+                    </p>
+                </div>
 
 
-            <!-- Footer -->
-            <footer id="contact">
-                <div class="footer-container">
-                    <div class="footer-content">
-                        <div class="footer-column">
-                            <h3>Contact Number</h3>
-                            <ul class="contact-info">
+            </div>
+        </div>
+    </section>
 
-                                <li><i>📞</i> +971 50 919 0798</li>
+    <div class="modal" id="info-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Operational Strategy</h3>
+                <button class="close-modal" id="close-modal-btn">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body-content">
+            </div>
+        </div>
+    </div>
 
-                            </ul>
-                        </div>
+    <div class="whatsapp-widget">
+        <div class="chat-trigger" id="chat-trigger-btn">
+            <i class="fa-brands fa-whatsapp"></i>
+        </div>
+        <div class="chat-panel" id="chat-panel-window">
+            <div class="panel-header">
+                <div class="avatar"><i class="fa-solid fa-headset"></i></div>
+                <div>
+                    <h4>Eurasia Desk</h4>
+                    <p><i class="fa-solid fa-circle" style="font-size: 0.5rem;"></i> Online Support</p>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="msg-bubble">Welcome to Eurasia Group Command Portal. Connect directly with an international
+                    relations representative.</div>
+                <a href="https://wa.me/971563264891" target="_blank" class="btn"
+                    style="width: 100%; justify-content: center; background: #25D366; box-shadow: none;">
+                    <i class="fa-brands fa-whatsapp"></i> Initiate Secure Link
+                </a>
+            </div>
+        </div>
+    </div>
 
-                        <div class="footer-column">
-                            <h3>Email & Website</h3>
-                            <ul class="contact-info">
-                                <li>🌐 sales@eurasiagroupltd.com</li>
-                                <li>🌐 info@eurasiagroupltd.com</li>
-
-                            </ul>
-                        </div>
-
-                        <div class="footer-column">
-                            <h3>Office Locations</h3>
-                            <ul class="footer-links">
-                                <li>
-
-                                    <h2>EURASIA GROUP</h2>
-                                <li>
-
-                                    <strong>HEAD OFFICE 🇦🇪 </strong><br>
-                                    Dubai/AbuDhabi
-
-                                    <ul>
-                                        <li>Eurasia Manpower Supply</li>
-                                    </ul>
-
-                                </li>
-                                <li>
-
-                                    <strong>USA BRANCH 🇺🇸
-                                    </strong><br>
-                                    New Jersey
-                                    <ul>
-                                        <li>Ishnaz LLC</li>
-                                        <li>Spark Trading LLC</li>
-                                    </ul>
-                                </li>
-                                <li>
-
-                                    <strong> CHINA BRANCH 🇨🇳
-                                    </strong><br>
-                                    Hainan Haikou
-                                    <ul>
-                                        <li>Gujrat Import & Export Trading LLC.
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-
-                                    <strong>PAKISTAN BRANCH 🇵🇰 </strong><br>
-                                    Anwar Center, Gujrat
-
-                                    <ul>
-                                        <li>Eurasia Travels</li>
-                                        <li>Euro International Consultant Pvt Ltd.</li>
-                                        <li>Tight Security Services pvt Ltd.</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!-- <div class="footer-bottom">
-                            <p>&copy; 2023 Eurasia Group of Companies. All rights reserved.</p>
-                        </div> -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo-side">
+                    <h3>EURASIA <span>GROUP</span></h3>
+                    <p>Comprehensive enterprise mechanics and inter-industry deployment networks since 1995.</p>
+                    <div class="social-icons">
+                        <a href="https://tiktok.com/@eurasiagroup1?_r=1&_t=ZS-96dWfqWddvY" target="_blank"><i
+                                class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://whatsapp.com/channel/0029VbBzZglElagnDpgSzl0z" target="_blank"><i
+                                class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>
-            </footer>
+                <div class="footer-links-side">
+                    <h4>Directives Matrix</h4>
+                    <ul>
+                        <li><a href="#home">Home Base</a></li>
+                        <li><a href="#services">Corporate Services</a></li>
+                        <li><a href="#global">Geographic Logistics</a></li>
+                        <li><a href="#leadership">Executive Structure</a></li>
+                    </ul>
+                </div>
+                <div class="footer-office-side">
+                    <h4>International Hub Matrices</h4>
+                    <div class="office-grid">
+                        <div class="office-location-card">
+                            <h5>UAE Corporate Head Office</h5>
+                            <p>BN Complex, OFF-M2-414, Al Muteena, Deira, Dubai.<br><strong>Tel:</strong> +971 50 919
+                                0798</p>
+                        </div>
+                        <div class="office-location-card">
+                            <h5>USA Branch Matrix</h5>
+                            <p>19 Hudson Ave, North Plainfield, New Jersey.<br><em>Ishnaz LLC</em></p>
+                        </div>
+                        <div class="office-location-card">
+                            <h5>China Procurement Core</h5>
+                            <p>Wuzhi Mountain Road, Meilan District, Hainan Haikou.<br><em>Gujrat Import & Export
+                                    Trading LLC</em></p>
+                        </div>
+                        <div class="office-location-card">
+                            <h5>Pakistan Regional Base</h5>
+                            <p>Anwar Center, Gujrat.<br><em>Eurasia Travels & Euro International Consultant</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Eurasia Group of Companies. Systems Secure. All Rights Reserved.</p>
+                <p style="font-size: 0.8rem;">Corporate Contact: sales@eurasiagroupltd.com / info@eurasiagroupltd.com
+                </p>
+            </div>
+        </div>
+    </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-            <script>
-                // Mobile menu toggle
-                document.querySelector('.mobile-menu-toggle').addEventListener('click', function () {
-                    this.classList.toggle('active');
-                    document.querySelector('.nav-links').classList.toggle('active');
-                    document.body.classList.toggle('no-scroll');
-                });
+    <script>
+        // -------------------------------------------------------------
+        // Theme Engine State Management (Light / Dark Matrix)
+        // -------------------------------------------------------------
+        const themeToggleNode = document.getElementById('theme-toggle-node');
 
-                // Close mobile menu when clicking on a link
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        document.querySelector('.nav-links').classList.remove('active');
-                        document.querySelector('.mobile-menu-toggle').classList.remove('active');
-                        document.body.classList.remove('no-scroll');
-                    });
-                });
+        // Detect persistent setting or system preference defaults
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        updateThemeToggleButtonIcon(currentTheme);
 
-                // Smooth scrolling for anchor links
-                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                    anchor.addEventListener('click', function (e) {
-                        if (this.hash !== "") {
-                            e.preventDefault();
+        themeToggleNode.addEventListener('click', () => {
+            const activeTheme = document.documentElement.getAttribute('data-theme');
+            const targetTheme = activeTheme === 'dark' ? 'light' : 'dark';
 
-                            const target = document.querySelector(this.hash);
-                            if (target) {
-                                window.scrollTo({
-                                    top: target.offsetTop - 70,
-                                    behavior: 'smooth'
-                                });
-                            }
-                        }
-                    });
-                });
+            document.documentElement.setAttribute('data-theme', targetTheme);
+            localStorage.setItem('theme', targetTheme);
+            updateThemeToggleButtonIcon(targetTheme);
+        });
 
-                // Expandable cards functionality
-                document.addEventListener('DOMContentLoaded', function () {
-                    const cards = document.querySelectorAll('.expandable-card');
+        function updateThemeToggleButtonIcon(theme) {
+            if (theme === 'light') {
+                themeToggleNode.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+            } else {
+                themeToggleNode.innerHTML = `<i class="fa-solid fa-sun"></i>`;
+            }
+        }
 
-                    cards.forEach(card => {
-                        const header = card.querySelector('.card-header');
-                        header.addEventListener('click', () => {
-                            // Close all other cards first
-                            cards.forEach(otherCard => {
-                                if (otherCard !== card && otherCard.classList.contains('active')) {
-                                    otherCard.classList.remove('active');
-                                    otherCard.querySelector('.expand-icon').textContent = '+';
-                                }
-                            });
+        // -------------------------------------------------------------
+        // WebGL Interactive Three.js 3D Globe Implementation Engine
+        // -------------------------------------------------------------
+        const canvasContainer = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
 
-                            // Toggle current card
-                            card.classList.toggle('active');
-                            const icon = header.querySelector('.expand-icon');
-                            icon.textContent = card.classList.contains('active') ? '-' : '+';
-                        });
-                    });
-                });
+        const camera = new THREE.PerspectiveCamera(45, canvasContainer.clientWidth / canvasContainer.clientHeight, 0.1, 1000);
+        camera.position.z = 2.8;
 
-            </script>
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(canvasContainer.clientWidth, canvasContainer.clientHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        canvasContainer.appendChild(renderer.domElement);
+
+        const globeGeometry = new THREE.SphereGeometry(1, 64, 64);
+        const globeMaterial = new THREE.MeshBasicMaterial({
+            color: 0xd10000,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.18
+        });
+        const globeMesh = new THREE.Mesh(globeGeometry, globeMaterial);
+        scene.add(globeMesh);
+
+        const pointDensityGeometry = new THREE.BufferGeometry();
+        const particleCount = 450;
+        const vertexPositions = new Float32Array(particleCount * 3);
+
+        for (let i = 0; i < particleCount * 3; i += 3) {
+            const u = Math.random();
+            const v = Math.random();
+            const theta = u * 2.0 * Math.PI;
+            const phi = Math.acos(2.0 * v - 1.0);
+            const r = 1.05;
+
+            vertexPositions[i] = r * Math.sin(phi) * Math.cos(theta);
+            vertexPositions[i + 1] = r * Math.sin(phi) * Math.sin(theta);
+            vertexPositions[i + 2] = r * Math.cos(phi);
+        }
+
+        pointDensityGeometry.setAttribute('position', new THREE.BufferAttribute(vertexPositions, 3));
+        const customPointMaterial = new THREE.PointsMaterial({
+            color: 0xffffff,
+            size: 0.015,
+            transparent: true,
+            opacity: 0.6
+        });
+        const particleSystem = new THREE.Points(pointDensityGeometry, customPointMaterial);
+        scene.add(particleSystem);
+
+        const clock = new THREE.Clock();
+
+        function runAnimationPipeline() {
+            const elapsedTime = clock.getElapsedTime();
+            globeMesh.rotation.y = elapsedTime * 0.05;
+            globeMesh.rotation.x = elapsedTime * 0.02;
+            particleSystem.rotation.y = -elapsedTime * 0.03;
+
+            renderer.render(scene, camera);
+            requestAnimationFrame(runAnimationPipeline);
+        }
+        runAnimationPipeline();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = canvasContainer.clientWidth / canvasContainer.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(canvasContainer.clientWidth, canvasContainer.clientHeight);
+        });
+
+        // -------------------------------------------------------------
+        // UI Interaction Dynamics & State Controller Logic
+        // -------------------------------------------------------------
+        const menuBtn = document.getElementById('menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuBtn.innerHTML = navMenu.classList.contains('active') ? `<i class="fa-solid fa-xmark"></i>` : `<i class="fa-solid fa-bars"></i>`;
+        });
+
+        // Interactive 3D Card Tilt Physics Simulation
+        const structuralCards = document.querySelectorAll('.service-card');
+        structuralCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const rotateX = ((y / rect.height) - 0.5) * -12;
+                const rotateY = ((x / rect.width) - 0.5) * 12;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+            });
+        });
+
+        // Capability Matrix Storage Mapping
+        const serviceMatrix = {
+            manpower: {
+                title: "Manpower Solutions Engineering",
+                html: `<p>We formulate tailored, enterprise-level structures to control talent acquisition pipelines, immigration pathways, cross-border onboarding compliance metrics, and technical field deployment across entire corporate lifecycles.</p><br><ul><li>Complete regulatory lifecycle coordination management.</li><li>Vast operational framework operating fluidly across UAE domains.</li><li>Seamless execution of large-scale human resource transitions and complex enterprise payroll logistics.</li></ul>`
+            },
+            staffing: {
+                title: "Premium Strategic Staffing Systems",
+                html: `<p>Providing elite contingency recruitment execution frameworks and optimized structural direct sourcing architectures across complex mission-critical targets.</p><br><h5>Key Operational Advantages:</h5><br><ul><li>Accelerated time-to-hire execution parameters.</li><li>Strategic direct sourcing paths built to intercept high-tier international candidates.</li><li>Targeted RPO blueprints that scale linearly with operational corporate density requirements.</li></ul>`
+            },
+            setup: {
+                title: "Transnational Enterprise Corporate Setup",
+                html: `<p>Engineering high-speed, legal corporate entity creation blueprints across dominant global economic sectors and high-growth trade environments.</p><br><ul><li>Comprehensive corporate filing protocol execution.</li><li>Instant infrastructure provisioning across high-end professional flexible workspaces.</li><li>Complete, single-point transactional management spanning legal compliance steps, physical facility acquisition, and license activation.</li></ul>`
+            },
+            technical: {
+                title: "Advanced Engineering & Technical Services",
+                html: `<p>Executing high-level asset management frameworks, safety compliance protocols, and system optimizations across premium physical installations.</p><br><ul><li>Comprehensive industrial Annual Maintenance Contracts (AMC).</li><li>Precision environmental system engineering, duct purging, and fluid loop cleanups.</li><li>Large-scale structural restoration pipelines, advanced electrical infrastructure alignment, and professional waterproofing layers.</li></ul>`
+            },
+            travel: {
+                title: "Global Logistics & Travel Consolidation",
+                html: `<p>Leveraging continuous institutional transit networks active since 1995 to provision optimized travel programs and high-volume corporate logistics pipelines.</p><br><ul><li>Top tier ranking across elite international carrier networks.</li><li>Optimized, cost-efficient corporate travel account management.</li><li>Comprehensive execution processing for specialized transit networks, group packages, and corporate regulatory validation protocols.</li></ul>`
+            },
+            trading: {
+                title: "Transnational Import/Export Trade Infrastructure",
+                html: `<p>Managing automated multi-modal supply chains and trade routing between key Far-East industrial factories and international commercial distribution hubs.</p><br><ul><li>Continuous freight pipelines originating directly out of China industrial centers.</li><li>Specialized transport lines for consumer electronics, industrial apparel materials, lighting components, and automated heavy machinery equipment.</li></ul>`
+            }
+        };
+
+        // Modal Action Interfaces
+        const infoModal = document.getElementById('info-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body-content');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        document.querySelectorAll('.open-modal-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const parentCardId = btn.closest('.service-card').getAttribute('data-service');
+                const schema = serviceMatrix[parentCardId];
+
+                if (schema) {
+                    modalTitle.innerText = schema.title;
+                    modalBody.innerHTML = schema.html;
+                    infoModal.classList.add('active');
+                }
+            });
+        });
+
+        closeModalBtn.addEventListener('click', () => infoModal.classList.remove('active'));
+        window.addEventListener('click', (e) => { if (e.target === infoModal) infoModal.classList.remove('active'); });
+
+        // WhatsApp Interaction Engine Panel Toggle
+        const chatTriggerBtn = document.getElementById('chat-trigger-btn');
+        const chatPanelWindow = document.getElementById('chat-panel-window');
+
+        chatTriggerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            chatPanelWindow.classList.toggle('active');
+        });
+
+        window.addEventListener('click', () => { chatPanelWindow.classList.remove('active'); });
+        chatPanelWindow.addEventListener('click', (e) => e.stopPropagation());
+    </script>
 </body>
 
 </html>
